@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>ＮＥＵ電卓</title>
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+
+<script type="text/javascript">
+
+window.onload = function() {
+  document.neuCalculator.neuPlus1.onclick   = function() { neuDraw(1);   }
+  document.neuCalculator.neuPlus2.onclick   = function() { neuDraw(2);   }
+  document.neuCalculator.neuPlus3.onclick   = function() { neuDraw(3);   }
+  document.neuCalculator.neuPlus4.onclick   = function() { neuDraw(4);   }
+  document.neuCalculator.neuPlus5.onclick   = function() { neuDraw(5);   }
+  document.neuCalculator.neuPlus6.onclick   = function() { neuDraw(6);   }
+  document.neuCalculator.neuPlus7.onclick   = function() { neuDraw(7);   }
+  document.neuCalculator.neuPlus8.onclick   = function() { neuDraw(8);   }
+  document.neuCalculator.neuPlus9.onclick   = function() { neuDraw(9);   }
+  document.neuCalculator.neuPlus10.onclick  = function() { neuDraw(10);  }
+  document.neuCalculator.neuPlus50.onclick  = function() { neuDraw(50);  }
+  document.neuCalculator.neuJust101.onclick = function() { neuDraw(101); }
+
+  document.neuCalculator.neuMinus1.onclick  = function() { neuDraw(-1);  }
+  document.neuCalculator.neuMinus10.onclick = function() { neuDraw(-10); }
+
+  document.neuCalculator.neuClear.onclick   = function() { neuClear();   }
+}
+
+neuScore = 0;
+
+function neuDraw(number) {
+  if (number == 101) {
+    neuScore = 101;
+  } else {
+    neuScore = neuScore + number;
+  }
+  document.neuCalculator.neuDisplay.value = neuScore;
+}
+
+function neuClear() {
+  neuScore = 0;
+  document.neuCalculator.neuDisplay.value = neuScore;
+}
+
+</script>
+
+<style type="text/css">
+input, button, table { width: 100%; }
+input { font-size: 2em; text-align: right; }
+button { height: 3em; }
+button.just { color: blue; }
+button.plus { color: red; }
+button.minus { color: green; }
+</style>
+</head>
+
+<body>
+	<form name="neuCalculator">
+
+	<table>
+	<tbody>
+	<tr>
+		<th colspan="4">
+			<input type="text" name="neuDisplay" value="0" disabled />
+		</th>
+	</tr>
+	<tr>
+		<td><button type="button" class="plus"  name="neuPlus10"  >　１０</button></td>
+		<td><button type="button" class="plus"  name="neuPlus50"  >　５０</button></td>
+		<td><button type="button" class="just"  name="neuJust101" >１０１</button></td>
+		<td><button type="button" class="minus" name="neuMinus10" >－１０</button></td>
+	</tr>
+	<tr>
+		<td><button type="button" class="plus"  name="neuPlus7"   >　　７</button></td>
+		<td><button type="button" class="plus"  name="neuPlus8"   >　　８</button></td>
+		<td><button type="button" class="plus"  name="neuPlus9"   >　　９</button></td>
+		<td><button type="button" class="minus" name="neuMinus1"  >　－１</button></td>
+	</tr>
+	<tr>
+		<td><button type="button" class="plus"  name="neuPlus4"   >　　４</button></td>
+		<td><button type="button" class="plus"  name="neuPlus5"   >　　５</button></td>
+		<td><button type="button" class="plus"  name="neuPlus6"   >　　６</button></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><button type="button" class="plus"  name="neuPlus1"   >　　１</button></td>
+		<td><button type="button" class="plus"  name="neuPlus2"   >　　２</button></td>
+		<td><button type="button" class="plus"  name="neuPlus3"   >　　３</button></td>
+		<td><button type="button"               name="neuClear"   >クリア</button></td>
+	</tr>
+	</tbody>
+	</table>
+
+	</form>
+</body>
+</html>
