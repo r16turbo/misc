@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+body {
+	background-color: #4e454a;
+	color: silver;
+}
+
+a:link, a:visited {
+	color: silver;
+}
+
+nav > ol {
+	list-style-type: none;
+	padding: 0;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+header, footer {
+	margin: 1em;
+	overflow: hidden;
+}
+
+nav > div {
+	width: 33%;
+	text-align: center;
+}
+nav > div.prev {
+	float: left;
+}
+nav > div.back {
+	float: left;
+}
+nav > div.next {
+	float: right;
+}
