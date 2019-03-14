@@ -3,38 +3,37 @@
 <head>
   <title>持っていますブックマークレット</title>
   <meta charset="UTF-8">
-  <meta name="keywords" content="Amazon,アマゾン,I own it,持っています">
+  <meta name="keywords" content="Amazon,アマゾン,I own it,持っています,Bookmarklet,ブックマークレット">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 </head>
-<body style="box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 45px;">
+<body style="box-sizing: border-box; max-width: 980px; margin: auto; padding: 15px">
 
 <article class="markdown-body">
-<h1>持っていますブックマークレット</h1>
-<p>🔖<a href="javascript:(function()%7BP.when('jQuery').execute(function(j)%7Bvar%20asin%3Dj('%23asin').val()%3Bvar%20sid%3Dj('%23sid').val()%3Bvar%20data%3D%7B'session-id'%3Asid%2C'rating.source'%3A'ir'%2C'rating_asin'%3Aasin%2C'type'%3A'asin'%2C'template-name'%3A'http%3A%2F%2Fwww.amazon.co.jp%2Fgp%2Fyourstore%2Frecs%3Fie%3DUTF8%26ref_%3Dsv_ys_1'%2C'return.response'%3A'204'%7D%3Bdata%5Basin%2B'_asin.rating.owned'%5D%3D'OWN'%3Bj.post('%2Fgp%2Fyourstore%2Fratings%2Fsubmit.html%2Fref%3Dpd_recs_rate_ioi_ys_ir_all'%2Cdata).then(function()%7Balert('%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F')%7D%2Cfunction(a)%7Balert('%E7%99%BB%E9%8C%B2%E5%A4%B1%E6%95%97%EF%BC%9A'%2Ba.status)%7D)%7D)%7D)()">持っています</a></p>
-<p>Amazonの「持っています」にチェックを入れます。</p>
+  <h1>持っています<wbr>ブックマークレット</h1>
+
+  <p>Amazonの「持っています」にチェックを入れます。</p>
+
+  <p>🔖<a href="javascript:(function()%7BP.when('jQuery').execute(j%3D%3E%7Bvar%20asin%3Dj('%23asin%2C%23ASIN').val()%2Cdata%3D%7B'session-id'%3Aj('%23sid%2C%23session-id').val()%2C'rating_asin'%3Aasin%2C'return.response'%3A'204'%7D%3Bdata%5Basin%2B'_asin.rating.owned'%5D%3D'OWN'%3Bj.post('%2Fgp%2Fyourstore%2Flegacy%2Fratings%2Fsubmit.html'%2Cdata).done(()%3D%3Ealert('%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F')).fail(a%3D%3Ealert('%E7%99%BB%E9%8C%B2%E5%A4%B1%E6%95%97%EF%BC%9A'%2Ba.status))%7D)%7D)()">持っています</a></p>
+
+  <label for="url">URL:</label>
+  <input style="width: 100%" name="url" type="text" readonly value="javascript:(function()%7BP.when('jQuery').execute(j%3D%3E%7Bvar%20asin%3Dj('%23asin%2C%23ASIN').val()%2Cdata%3D%7B'session-id'%3Aj('%23sid%2C%23session-id').val()%2C'rating_asin'%3Aasin%2C'return.response'%3A'204'%7D%3Bdata%5Basin%2B'_asin.rating.owned'%5D%3D'OWN'%3Bj.post('%2Fgp%2Fyourstore%2Flegacy%2Fratings%2Fsubmit.html'%2Cdata).done(()%3D%3Ealert('%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F')).fail(a%3D%3Ealert('%E7%99%BB%E9%8C%B2%E5%A4%B1%E6%95%97%EF%BC%9A'%2Ba.status))%7D)%7D)()"></p>
 </article>
 
 <pre><code>javascript:(function() {
-  P.when('jQuery').execute(function(j) {
-    var asin = j('#asin').val();
-    var sid = j('#sid').val();
-    var data = {
-      'session-id': sid,
-      'rating.source': 'ir',
+  P.when('jQuery').execute(j => {
+    var asin = j('#asin,#ASIN').val(),
+     data = {
+      'session-id': j('#sid,#session-id').val(),
       'rating_asin': asin,
-      'type': 'asin',
-      'template-name': 'http://www.amazon.co.jp/gp/yourstore/recs?ie=UTF8&ref_=sv_ys_1',
       'return.response': '204'
     };
     data[asin + '_asin.rating.owned'] = 'OWN';
-    j.post('/gp/yourstore/ratings/submit.html/ref=pd_recs_rate_ioi_ys_ir_all', data).then(function() {
-      alert('登録しました')
-    }, function(a) {
-      alert('登録失敗：' + a.status)
-    })
+    j.post('/gp/yourstore/legacy/ratings/submit.html', data)
+      .done(() => alert('登録しました'))
+      .fail(a => alert('登録失敗：' + a.status))
   })
 })()</code></pre>
 
